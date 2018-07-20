@@ -17,6 +17,7 @@ public:
     MyDataBase(QString name);
 
     void AddNewClient(QString name, QString surname, quint8 age);
+    void DeleteClient(int id);
 
     QSqlTableModel* GetTableModel();
 };

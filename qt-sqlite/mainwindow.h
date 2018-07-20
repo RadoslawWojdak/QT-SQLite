@@ -27,6 +27,14 @@ private slots:
 
     void refresh_tableView();
 
+    void on_deleteLineEdit_returnPressed();
+
+    void on_nameLineEdit_returnPressed();
+
+    void on_surnameLineEdit_returnPressed();
+
+    void on_ageLineEdit_returnPressed();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -24,26 +24,6 @@ void MyDataBase::ShowErrorMessage(QString text) const
     msgBox.exec();
 }
 
-QSqlTableModel* MyDataBase::GetTableModel()
-{
-    if(!this->open())
-        ShowErrorMessage("Error: The database file can not be created/opened");
-
-    QSqlQuery query;
-    query.exec("SELECT * FROM clients");
-
-    QSqlTableModel* model = new QSqlTableModel(NULL, *this);
-    model->setTable("clients");
-    model->select();
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("name"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("surname"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
-
-    this->close();
-
-    return model;
-}
-
 void MyDataBase::AddNewClient(QString name, QString surname, quint8 age)
 {
     if(!this->open())
@@ -59,4 +39,34 @@ void MyDataBase::AddNewClient(QString name, QString surname, quint8 age)
         ShowErrorMessage("Error: The table of clients was not updated");
 
     this->close();
+}
+
+void MyDataBase::DeleteClient(int id)
+{
+    if(!this->open())
+        ShowErrorMessage("Error: The database file can not be created/opened");
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM clients WHERE clients.id LIKE ?");
+    query.addBindValue(id);
+
+    if (!query.exec())
+        ShowErrorMessage("Error: The records have not been deleted");
+
+    this->close();
+}
+
+
+QSqlTableModel* MyDataBase::GetTableModel()
+{
+    if(!this->open())
+        ShowErrorMessage("Error: The database file can not be created/opened");
+
+    QSqlTableModel* model = new QSqlTableModel(NULL, *this);
+    model->setTable("clients");
+    model->select();
+
+    this->close();
+
+    return model;
 }

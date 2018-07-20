@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->ageLineEdit->setValidator( new QIntValidator(0, 255, this) );
+    ui->deleteLineEdit->setValidator( new QIntValidator(0, 2147483647, this) );
 }
 
 MainWindow::~MainWindow()
@@ -30,7 +31,8 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::on_deleteButton_clicked()
 {
-
+    db->DeleteClient(ui->deleteLineEdit->text().toInt());
+    refresh_tableView();
 }
 
 void MainWindow::on_addButton_clicked()
@@ -51,4 +53,25 @@ void MainWindow::refresh_tableView()
 
     ui->tableView->setModel(tableModel);
     ui->tableView->show();
+}
+
+void MainWindow::on_deleteLineEdit_returnPressed()
+{
+    on_deleteButton_clicked();
+}
+
+
+void MainWindow::on_nameLineEdit_returnPressed()
+{
+    on_addButton_clicked();
+}
+
+void MainWindow::on_surnameLineEdit_returnPressed()
+{
+    on_addButton_clicked();
+}
+
+void MainWindow::on_ageLineEdit_returnPressed()
+{
+    on_addButton_clicked();
 }
