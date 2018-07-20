@@ -164,6 +164,9 @@
         <height>20</height>
        </rect>
       </property>
+      <property name="maxLength">
+       <number>25</number>
+      </property>
      </widget>
      <widget class="QLineEdit" name="surnameLineEdit">
       <property name="geometry">
@@ -173,6 +176,9 @@
         <width>161</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="maxLength">
+       <number>45</number>
       </property>
      </widget>
      <widget class="QLineEdit" name="ageLineEdit">

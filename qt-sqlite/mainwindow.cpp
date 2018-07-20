@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->ageLineEdit->setValidator( new QIntValidator(0, 255, this) );
 }
 
 MainWindow::~MainWindow()
@@ -22,11 +24,7 @@ void MainWindow::on_startButton_clicked()
 
         ui->stackedWidget->setCurrentWidget(ui->viewDatabaseWidget);
 
-        QSqlTableModel* tableModel = db->GetTableModel();
-        tableModel->setParent(this);
-
-        ui->tableView->setModel(tableModel);
-        ui->tableView->show();
+        refresh_tableView();
     }
 }
 
@@ -37,5 +35,20 @@ void MainWindow::on_deleteButton_clicked()
 
 void MainWindow::on_addButton_clicked()
 {
+    QString name = ui->nameLineEdit->text();
+    QString surname = ui->surnameLineEdit->text();
+    quint8 age = ui->ageLineEdit->text().toUInt();
 
+    db->AddNewClient(name, surname, age);
+
+    refresh_tableView();
+}
+
+void MainWindow::refresh_tableView()
+{
+    QSqlTableModel* tableModel = db->GetTableModel();
+    tableModel->setParent(this);
+
+    ui->tableView->setModel(tableModel);
+    ui->tableView->show();
 }

@@ -11,7 +11,7 @@ MyDataBase::MyDataBase(QString name) :
         ShowErrorMessage("Error: The database file can not be created/opened");
 
     QSqlQuery query;
-    if (!query.exec("CREATE TABLE IF NOT EXISTS clients(id INTEGER PRIMARY KEY, name TEXT, surname TEXT, age INTEGER)"))
+    if (!query.exec("CREATE TABLE IF NOT EXISTS clients(id INTEGER PRIMARY KEY, name VARCHAR(25), surname VARCHAR(45), age TINYINT UNSIGNED)"))
         ShowErrorMessage("Error: The table of clients was not created");
 
     this->close();
@@ -42,4 +42,21 @@ QSqlTableModel* MyDataBase::GetTableModel()
     this->close();
 
     return model;
+}
+
+void MyDataBase::AddNewClient(QString name, QString surname, quint8 age)
+{
+    if(!this->open())
+        ShowErrorMessage("Error: The database file can not be created/opened");
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO clients(name, surname, age) VALUES(?, ?, ?)");
+    query.addBindValue(name);
+    query.addBindValue(surname);
+    query.addBindValue(age);
+
+    if (!query.exec())
+        ShowErrorMessage("Error: The table of clients was not updated");
+
+    this->close();
 }

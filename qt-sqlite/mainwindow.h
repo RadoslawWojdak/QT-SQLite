@@ -25,6 +25,8 @@ private slots:
 
     void on_addButton_clicked();
 
+    void refresh_tableView();
+
 private:
     Ui::MainWindow *ui;
 };

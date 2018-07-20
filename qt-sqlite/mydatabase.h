@@ -16,6 +16,8 @@ class MyDataBase :public QSqlDatabase
 public:
     MyDataBase(QString name);
 
+    void AddNewClient(QString name, QString surname, quint8 age);
+
     QSqlTableModel* GetTableModel();
 };
 
