@@ -12,3 +12,24 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_startButton_clicked()
+{
+    QString dbName = ui->dbNameLineEdit->text();
+    if (dbName != "")
+    {
+        db = new MyDataBase(dbName);
+
+        ui->stackedWidget->setCurrentWidget(ui->viewDatabaseWidget);
+    }
+}
+
+void MainWindow::on_deleteButton_clicked()
+{
+
+}
+
+void MainWindow::on_addButton_clicked()
+{
+
+}

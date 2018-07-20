@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets
+QT       += core gui widgets sql
 
 TARGET = qt-sqlite
 TEMPLATE = app
@@ -24,10 +24,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    mydatabase.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    mydatabase.h
 
 FORMS += \
         mainwindow.ui
