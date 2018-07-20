@@ -12,7 +12,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    MyDataBase *db;
+    MyDataBase* db;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);

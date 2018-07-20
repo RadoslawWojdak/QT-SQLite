@@ -21,6 +21,12 @@ void MainWindow::on_startButton_clicked()
         db = new MyDataBase(dbName);
 
         ui->stackedWidget->setCurrentWidget(ui->viewDatabaseWidget);
+
+        QSqlTableModel* tableModel = db->GetTableModel();
+        tableModel->setParent(this);
+
+        ui->tableView->setModel(tableModel);
+        ui->tableView->show();
     }
 }
 

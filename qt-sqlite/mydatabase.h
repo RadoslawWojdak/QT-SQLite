@@ -5,6 +5,7 @@
 #include <QtSql/QSqlDriver>
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
+#include <QtSql/QSqlTableModel>
 #include <QMessageBox>
 #include <QDir>
 
@@ -14,6 +15,8 @@ class MyDataBase :public QSqlDatabase
 
 public:
     MyDataBase(QString name);
+
+    QSqlTableModel* GetTableModel();
 };
 
 #endif // MYDATABASE_H
