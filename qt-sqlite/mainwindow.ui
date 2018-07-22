@@ -226,6 +226,9 @@
           </item>
           <item row="0" column="1" colspan="3">
            <widget class="QTableView" name="tableView">
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
             </property>
@@ -352,6 +355,17 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>dbNameLineEdit</tabstop>
+  <tabstop>startButton</tabstop>
+  <tabstop>deleteLineEdit</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>nameLineEdit</tabstop>
+  <tabstop>surnameLineEdit</tabstop>
+  <tabstop>ageLineEdit</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

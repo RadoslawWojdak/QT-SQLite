@@ -35,6 +35,8 @@ private slots:
 
     void on_ageLineEdit_returnPressed();
 
+    void on_dbNameLineEdit_returnPressed();
+
 private:
     Ui::MainWindow *ui;
 };

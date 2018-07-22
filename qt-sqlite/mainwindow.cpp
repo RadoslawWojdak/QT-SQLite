@@ -75,3 +75,8 @@ void MainWindow::on_ageLineEdit_returnPressed()
 {
     on_addButton_clicked();
 }
+
+void MainWindow::on_dbNameLineEdit_returnPressed()
+{
+    on_startButton_clicked();
+}
