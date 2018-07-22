@@ -31,8 +31,15 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::on_deleteButton_clicked()
 {
-    db->DeleteClient(ui->deleteLineEdit->text().toInt());
-    refresh_tableView();
+    int id = ui->deleteLineEdit->text().toInt();
+
+    if (id != 0)
+    {
+        db->DeleteClient(id);
+        refresh_tableView();
+
+        ui->deleteLineEdit->setText("");
+    }
 }
 
 void MainWindow::on_addButton_clicked()
@@ -41,9 +48,15 @@ void MainWindow::on_addButton_clicked()
     QString surname = ui->surnameLineEdit->text();
     quint8 age = ui->ageLineEdit->text().toUInt();
 
-    db->AddNewClient(name, surname, age);
+    if (name != "" && surname != "" && age > 0)
+    {
+        db->AddNewClient(name, surname, age);
+        refresh_tableView();
 
-    refresh_tableView();
+        ui->nameLineEdit->setText("");
+        ui->surnameLineEdit->setText("");
+        ui->ageLineEdit->setText("");
+    }
 }
 
 void MainWindow::refresh_tableView()
